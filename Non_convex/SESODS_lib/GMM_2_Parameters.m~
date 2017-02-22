@@ -36,8 +36,9 @@ end
 hadle=1;
     for j=1:2*d
         for i=j:2*d
-             x3(hadle) = P(i,j);
+             x3(hadle) = P(i,j,k);
              hadle=hadle+1;
         end
     end
+end
 p0=[x1 x2 x3]; 

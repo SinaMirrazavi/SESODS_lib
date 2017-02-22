@@ -15,22 +15,22 @@ options.tol_cutting = 0.00001; % A threshold on velocity that will be used for t
  
 % Training parameters
 options.K =2; %Number of Gaussian
-options.d=1; % Dimention  of Demostrations
+options.d=2; % Dimention  of Demostrations
 options.I=1; % It's a reduced factor. Leave it one if you want the dynamical system is trainded accordign to all the data.
 options.tol_mat_bias = 10^-18; % A very small positive scalar to avoid  instabilities in Gaussian kernel              
 options.display = 1;          % An option to control whether the algorithm displays the output of each iterations [default: true] 
-options.tol_stopping=10^(-8);  % A small positive scalar defining the stoppping tolerance for the optimization solver [default: 10^-10]
+options.tol_stopping=10^(-6);  % A small positive scalar defining the stoppping tolerance for the optimization solver [default: 10^-10]
 options.max_iter = 1000; % Maximum number of iteration for the solver [default: i_max=1000]
 options.TolCon = 1e-2;   % Tolerance on the constraint violation, a positive scalar. The default is 1e-6.
 options.Normilizing='False'; % If the number of the training data points need to be normalized along the path.
 options.Velocity='False'; % Velocity and Position of the demostrations are provided. 
                            % If you put it false, make sure that the name of demostrations are demo_P, and demo_V with same lengh.
-options.method='SYM'; % APA to construct J-SD
+options.method='APA'; % APA to construct J-SD
                        % SYM to constract S-SD
 options.smoothing='False'; % Recunstracting the demostrations from velocity profile.  
 options.Method=1; % Two types for initilizing are provied. First one is based on a one mapping from velocities and Positions to accelerartions. 
                   % Second one is based on a seperate mapping from velocities and Positions to accelerartions 
-options.Method_For_APA='NSYM'; % SYM to use the result of S-DS to coustract a J-SD
+options.Method_For_APA='SYM'; % SYM to use the result of S-DS to coustract a J-SD
 %% SESODS
 addpath([pwd, '/GMR_lib']);    % add GMR dir to path
 addpath([pwd, '/SEDS_lib']);    % add SEDS dir to path 

@@ -14,9 +14,9 @@ if (strcmp(options.method,'SYM')==1)||(strcmp(options.Method_For_APA,'SYM')==1)
 end
 %% J-SD is constructed here
 if (strcmp(options.Method_For_APA,'SYM')==1)
-    [P, F]=P_Calculator(Sigma_0_P_SYM,Sigma_0_V_SYM);
+    [P, F,Sigma_0_P_SYM,Sigma_0_V_SYM]=P_Calculator(Sigma_0_P_SYM,Sigma_0_V_SYM);
     if F==0
-       [P, ~]=P_Calculator(Sigma_0_P,Sigma_0_V);
+       [P, ~,Sigma_0_P,Sigma_0_V]=P_Calculator(Sigma_0_P,Sigma_0_V);
     else
         Priors_0_P=Priors_0_P_SYM;
         Mu_0_P=Mu_0_P_SYM;
@@ -28,7 +28,7 @@ end
 
 if (strcmp(options.method,'APA')==1)
     if (strcmp(options.Method_For_APA,'SYM')~=1)
-        [P, ~]=P_Calculator(Sigma_0_P,Sigma_0_V);
+        [P, ~,Sigma_0_P,Sigma_0_V]=P_Calculator(Sigma_0_P,Sigma_0_V);
     end
     p0 = GMM_2_Parameters(Priors_0_P,Mu_0_P,Sigma_0_P, Mu_0_V, Sigma_0_V,P,d,K);
     [C, ~, ~, ~]=ctr_eigenvalue(p0,d,K,0,Sigma_0_P,Sigma_0_V); 
