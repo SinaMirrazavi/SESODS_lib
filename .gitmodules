@@ -1,6 +1,6 @@
-[submodule "util/YALMIP"]
+[submodule "YALMIP"]
 	path = YALMIP
 	url = git@github.com:yalmip/YALMIP
-[submodule "util/sedumi"]
+[submodule "sedumi"]
 	path = sedumi
 url = git@github.com:sqlp/sedumi

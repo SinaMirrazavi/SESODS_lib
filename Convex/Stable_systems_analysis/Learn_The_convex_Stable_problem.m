@@ -34,15 +34,9 @@ if Method==1
     A = value(A);
     % b = value(b);
     b=zeros(d,K);
-    Sigma_out=Sigma;
+    Sigma_out=Sigma(1:d,1:d,:);
     prior_out=prior;
-    Mu_out=Mu;
-    for i=1:K
-        Sigma_input_output=A(:,:,i)*Sigma(1:d,1:d,i);
-        Sigma_out(d+1:2*d,1:d,i)=Sigma_input_output;
-        Sigma_out(1:d,d+1:2*d,i)=Sigma_input_output';
-        Mu_out(d+1:2*d,i)=A(:,:,i)*Mu(1:d,i)+b(:,i);
-    end
+    Mu_out=Mu(1:d,:);
 elseif Method==2
     A = sdpvar(d,d,K,'full');
     P = sdpvar(d,d);
@@ -72,59 +66,9 @@ elseif Method==2
     P=value(P)
     % b = value(b);
     b=zeros(d,K);
-    Sigma_out=Sigma;
+    Sigma_out=Sigma(1:d,1:d,:);
     prior_out=prior;
-    Mu_out=Mu;
-    for i=1:K
-        Sigma_input_output=A(:,:,i)*Sigma(1:d,1:d,i);
-        Sigma_out(d+1:2*d,1:d,i)=Sigma_input_output;
-        Sigma_out(1:d,d+1:2*d,i)=Sigma_input_output';
-        Mu_out(d+1:2*d,i)=A(:,:,i)*Mu(1:d,i)+b(:,i);
-    end
-    %     counter=1;
-    %     Delta=10*eye(d,d);
-    %     P0=eye(d,d);
-    %     while counter<50
-    %         counter=counter+1;
-    %         A = sdpvar(d,d,K,'full');
-    %         C=[];
-    %         for i=1:K
-    %             C=C+[A(:,:,i)'*(P0+Delta)+(P0+Delta)*A(:,:,i) <= -tol*eye(d,d)];
-    %         end
-    %         Fun=0;
-    %         for i=1:K
-    %             Fun=Fun+repmat(H(:,i),1,d)'.*(A(:,:,i)*Data(1:d,:));
-    %         end
-    %         diff=Fun-Data(d+1:2*d,:);
-    %         aux = sdpvar(d,length(diff));
-    %         Norm_Delta=norm(Delta);
-    %         Fun=sum((sum(aux.^2)))-Norm_Delta;
-    %         C=C+[aux == diff];
-    %         sol =  optimize(C,Fun,options);
-    %         Fun_v=value(Fun);
-    %         disp( sprintf('Value of Fun is  %d ',Fun_v));
-    %         if sol.problem~=0
-    %             disp('PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM')
-    %             K
-    %         end
-    %         Time=sol.solvertime;
-    %         A = value(A);
-    %         Delta = sdpvar(d,d);
-    %         C=[];
-    %         for i=1:K
-    %             C=C+[A(:,:,i)'*(P0+Delta)+(P0+Delta)*A(:,:,i) <= -tol*eye(d,d)];
-    %         end
-    %         C=C+[tol*eye(d,d)<=P0+Delta];
-    %         C=C+[Norm_Delta<=Fun_v];
-    %         Norm_Delta=sum((sum(Delta.^2)));
-    %         sol =  optimize(C,-Norm_Delta);
-    %         Delta=value(Delta);
-    %         disp( sprintf('Value of Delta is  %d ',value(Norm_Delta)));
-    %         if sol.problem~=0
-    %             disp('PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM PROBLEM')
-    %         end
-    %
-    %     end
+    Mu_out=Mu(1:d,:);
 end
 
 

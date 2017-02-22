@@ -1,5 +1,9 @@
 function [ERROR]=Cross_Validation(Data,prior,Mu,Sigma,A)
-d=size(Sigma,1)/2;
+if size(Sigma,1)==size(A,1)
+    d=size(Sigma,1);
+else
+    d=size(Sigma,1)/2;
+end
 K=size(Sigma,3);
 
 X_Input=Data(1:d,:);
@@ -32,8 +36,13 @@ end
 Denominator=sum(Pxi,2)+realmin;
 beta = Pxi./repmat(Denominator,1,K(1,3));
 for j=1:K(1,3)
-     b=Mu(d(1,1)+1:2*d(1,1),j)-A(:,:,j)*Mu(1:d(1,1),j);
-     y_tmp(:,:,j) =  A(:,:,j)* (Input)+repmat(b,1,size(xi_r,2));
+    if size(Sigma,1)==size(A,1)
+        b=zeros(size(Sigma,1),1);
+    else
+        b=Mu(d(1,1)+1:2*d(1,1),j)-A(:,:,j)*Mu(1:d(1,1),j);
+    end
+    
+    y_tmp(:,:,j) =  A(:,:,j)* (Input)+repmat(b,1,size(xi_r,2));
 end
 beta_tmp = reshape(beta,[1 size(beta)]);
 y_tmp2 = repmat(beta_tmp,[length(d(1,1)+1:2*d(1,1)) 1 1]) .* y_tmp;
