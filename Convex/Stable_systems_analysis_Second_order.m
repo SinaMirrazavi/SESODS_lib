@@ -21,7 +21,7 @@ options.dt = 0.1; %The time step of the demonstrations
 options.tol_cutting = 0.00001; % A threshold on velocity that will be used for trimming demos
 
 % Training parameters
-options.K =3; %Number of Gaussian
+options.K =2; %Number of Gaussian
 options.d=2; % Dimention  of Demostrations
 options.I=1; % It's a reduced factor. Leave it one if you want the dynamical system is trainded according to all the data.
 options.tol_mat_bias = 10^-18; % A very small positive scalar to avoid  instabilities in Gaussian kernel
@@ -51,8 +51,25 @@ if (strcmp(options.Velocity,'False')==1)
 end
 % Initialization
 
-[Priors_0_P,Mu_0_P,Sigma_0_P,Priors_0_V, Mu_0_V, Sigma_0_V, Data_P_A, Data_V_A,Data_A,demos_P,demos_V,demos,Time]=Initialization(Data_Set,demos_P,demos_V,options);
+[~,~,~,~, ~, ~, Data_P_A, Data_V_A,~,demos_P,demos_V,demos,~]=Initialization(Data_Set,demos_P,demos_V,options);
 DatA=[Data_P_A(1:options.d,:);Data_V_A(1:options.d,:);Data_V_A(1:options.d,:);Data_V_A(options.d+1:2*options.d,:)];
 [Unstable_EM.prior,Unstable_EM.Mu,Unstable_EM.Sigma,Unstable_EM.A,Unstable_EM.b,~,~,~,~]=Traing_EM(DatA,options);
 [Stable.prior,Stable.Mu,Stable.Sigma,Stable.A,time_CON]=Learn_The_convex_Stable_problem_second(Unstable_EM.prior,Unstable_EM.Mu,Unstable_EM.Sigma,DatA);
 %% Simulation
+figure1 = figure;
+axes1 = axes('Parent',figure1);
+hold(axes1,'on');
+xlabel('X [m]');
+ylabel('Y [m]');
+box(axes1,'on');
+grid(axes1,'on');
+set(axes1,'FontSize',24);
+for i=1:size(Training_N,2)
+   plot(Input_S{1,Training_N(1,i)}(:,1),Input_S{1,Training_N(1,i)}(:,2),'DisplayName','Training set','LineWidth',3,'Color',[1 0 0])
+   hold on
+end
+for i=1:size(Testing_N,2)
+   plot(Input_S{1,Testing_N(1,i)}(:,1),Input_S{1,Testing_N(1,i)}(:,2),'DisplayName','Testing set','LineWidth',3,'Color',[0 1 0])
+   hold on
+end
+Simulation(demos,Unstable_EM,Stable)

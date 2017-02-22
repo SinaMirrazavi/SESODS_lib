@@ -30,9 +30,8 @@ end
 Denominator=sum(Pxi,2)+realmin;
 beta = Pxi./repmat(Denominator,1,K(1,3));
 for j=1:K(1,3)
-     b=Mu(d(1,1)+1:2*d(1,1),j)-A(:,:,j)*Mu(1:d(1,1),j);
-     y_tmp(:,:,j) =  A(:,:,j)* (Input)+repmat(b,1,size(xi_r,2));
-    %   y_tmp(:,:,j) =  (x);
+%      b=Mu(d(1,1)+1:2*d(1,1),j)-A{j}*Mu(1:d(1,1),j);
+     y_tmp(:,:,j) =  A{j}* (Input);
 end
 beta_tmp = reshape(beta,[1 size(beta)]);
 y_tmp2 = repmat(beta_tmp,[length(d(1,1)+1:2*d(1,1)) 1 1]) .* y_tmp;
