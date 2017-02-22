@@ -4,6 +4,8 @@ clc
 % Unstable systems analysis
 addpath([pwd, '/Unstable_systems_analysis']);
 addpath([pwd, '/Stable_systems_analysis']);
+cd ..
+addpath([pwd, '/YALMIP-master']);
 load('matlab.mat','Input_S')
 Training_N=[1,9,12,13,10,7,17,4,2,5,15]; %'matlab.mat'
 Testing_N=[3,6,8,11,14,16,18,19,20];
@@ -27,7 +29,7 @@ close all
 % end
 [~ , ~, DatA, ~] = preprocess_demos(Data_Set,dt,tol_cutting);
 [~ , ~, DatA_T, ~] = preprocess_demos(Data_Set_T,dt,tol_cutting);
-for counter=1:25
+for counter=1:1
     counter
     options.K=1;  %Number of Gaussian funcitons
     [Unstable_EM.prior,Unstable_EM.Mu,Unstable_EM.Sigma,Unstable_EM.A,Unstable_EM.b,~,~,~,~]=Traing_EM(DatA,options);

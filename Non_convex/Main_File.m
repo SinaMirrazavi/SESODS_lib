@@ -5,7 +5,7 @@ clc
 % clear 
 close all
 %% User Parameters and Setting
-%  load('DATA/Multi_Demostrations/CShape','Demos') 
+  load('DATA/Multi_Demostrations/CShape','Demos') 
 % the variable 'demos' composed of 3 demosntrations. Each demonstrations is
 % recorded from Tablet-PC at 50Hz. Datas are in millimeters.
 
