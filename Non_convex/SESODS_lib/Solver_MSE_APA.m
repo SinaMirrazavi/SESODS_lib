@@ -146,9 +146,6 @@ function [J, DJ_Main]=obj(p,Data,d,K,Sigma_input_P,Sigma_input_V,P)
 % This function computes the derivative of the likelihood objective function
 % w.r.t. optimization parameters.
 DJ_Main=0;
-% nData=1;
-% Data=Dataa(:,1:nData);
-% Data=[1;1;1;1;1;1];
 nData = size(Data,2);
 DJ=zeros(1,size(p,2),nData);
 DDX=zeros(d,nData);
@@ -156,31 +153,13 @@ Diff=zeros(d,nData);
 
 [Priors_0_P,Mu_0_P,Sigma_0_P, Mu_0_V, Sigma_0_V,~] = shape_DS(p,d,K);
 
-% Sigma_0_P(1:d,1:d,:)=Sigma_input_P;
-% Sigma_0_P(d+1:2*d,1:d,:)=[1 0;0 1];
-% Sigma_0_P(1:d,d+1:2*d,:)=[1 0;0 1];
-% Sigma_0_P(2,1,1)=0;
-% Sigma_0_P(1,2,1)=0;
-% Sigma_0_P(2,2,1)=1;
-% Sigma_0_V(1:d,1:d,:)=Sigma_input_V;
-% Sigma_0_V(d+1:2*d,1:d,:)=Sigma_input_V;
-% Priors_0_P=1;
-% Mu_0_P=[1;1;0;0];
-% Mu_0_V=[1;1;0;0];
-% Sigma_input_P=Sigma_0_P(1:d,1:d,:);
-% Sigma_input_V=Sigma_0_V(1:d,1:d,:);
 for i=1:K
     Sigma_0_P(1:d,1:d,i)=Sigma_0_P(1:d,1:d,i)*Sigma_0_P(1:d,1:d,i)';
     Sigma_0_V(1:d,1:d,i)=Sigma_0_V(1:d,1:d,i)*Sigma_0_V(1:d,1:d,i)';
 end
-% Sigma_0_P(1:d,1:d,:)=Sigma_input_P;
-% for i=1:K
-%  Sigma_0_V(1:d,1:d,i)=Sigma_input_V(1:d,1:d,i)*Sigma_input_V(1:d,1:d,i)';
-% end
-% [~,Mu_0_P,~,Mu_0_V,~]=Stabilizing_B_K(Priors_0_P,Mu_0_P,Sigma_0_P,Mu_0_V,Sigma_0_V,d,K);
+
 i=1;
-%
-% nData=2;
+
 X  = Data(1:d,:);
 DX = Data(d+1:2*d,:);
 [DDX,Denominator,Numerator_P,Numerator_V,A_P,A_V]= SE_DS(Priors_0_P,Mu_0_P,Sigma_0_P, Mu_0_V, Sigma_0_V,DX,X);
