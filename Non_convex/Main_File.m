@@ -23,7 +23,7 @@ options.tol_stopping=10^(-6);  % A small positive scalar defining the stoppping 
 options.max_iter = 1000; % Maximum number of iteration for the solver [default: i_max=1000]
 options.TolCon = 1e-2;   % Tolerance on the constraint violation, a positive scalar. The default is 1e-6.
 options.Normilizing='False'; % If the number of the training data points need to be normalized along the path.
-options.Velocity='False'; % Velocity and Position of the demostrations are provided.
+options.Velocity='False'; % Velocity and Position of the demostrations are provided by the user.
 % If you put it false, make sure that the name of demostrations are demo_P, and demo_V with same lengh.
 options.method='APA'; % APA to construct J-SD
 % SYM to constract S-SD
