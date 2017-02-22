@@ -11,17 +11,16 @@ Matlab toolbox to learn a GMM based first and second order dynamical system. Thi
 
 - Yalmip: https://github.com/yalmip/YALMIP
   - Convex and Non convex solvers
-    - Personally, I uses sedumi and PENLAB and mosek
+    - Personally, I use sedumi, PENLAB and mosek solvers.I've also used Cplex and it is Nice:D 
     
 # Features:
 - GMR based stable first order dynamical systems.
 - GMR based stable second order dynamical systems.
 - Several different implementations: Convex or Non convex solvers.
-- Signal processing and calculating velocity and acceleration from positions are also included 
-# How to run 
- 
+- Signal processing and calculating velocity and acceleration from positions are also included.
+
+# How to run
 - If you want to use non-convex solver, you need to run [Main_File.m](https://github.com/sinamr66/SESODS_lib/blob/master/Non_convex/Main_File.m)
-  
 - If you want to use convex solver, you need to run [Stable_systems_analysis.m](https://github.com/sinamr66/SESODS_lib/blob/master/Convex/Stable_systems_analysis.m)
 
 
