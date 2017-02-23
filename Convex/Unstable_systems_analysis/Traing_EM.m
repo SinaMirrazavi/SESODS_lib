@@ -1,16 +1,16 @@
 function [prior,Mu,Sigma,A,b,Priors_0, Mu_0, Sigma_0,time]=Traing_EM(Data,options)
 Method=1;
-Matlab=false;
+Matlab=true;
 if Method==1
     if (Matlab==true)
-        Options = statset('Display','final','MaxIter',1);
+        Options = statset('Display','final','MaxIter',1000);
         obj = gmdistribution.fit(transpose(Data),options.K,'Options',Options,'Regularize',10^(-12),'Replicates',1);
         Priors_0=obj.ComponentProportion;
         Mu_0=transpose(obj.mu);
         Sigma_0=obj.Sigma;
         Options = statset('Display','off','MaxIter',500000,'TolFun',10^(-13),'TolX',10^(-13));
         tic
-        obj = gmdistribution.fit(transpose(Data),options.K,'Options',Options,'Regularize',10^(-4),'Replicates',10);
+        obj = gmdistribution.fit(transpose(Data),options.K,'Options',Options,'Regularize',10^(-4),'Replicates',20);
         time=toc;
         prior=obj.ComponentProportion;
         Mu=transpose(obj.mu);

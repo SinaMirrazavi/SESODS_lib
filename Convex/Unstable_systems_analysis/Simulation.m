@@ -4,7 +4,7 @@ d=size(Stable.Mu)/2;
 options = odeset('RelTol',1e-4,'AbsTol',1e-4);
 for j=1:length(Input_S)
     Xrobot_object_initial=Input_S{1,j}(1:2*d,1);
-[T1,x] = ode45(@(t,xi_r) SE(t,xi_r,Stable.prior,Stable.Mu,Stable.Sigma,Stable.A),[0:10],Xrobot_object_initial,options);
+[T1,x] = ode45(@(t,xi_r) SE(t,xi_r,Stable.prior,Stable.Mu,Stable.Sigma,Stable.A),[0:0.001:100],Xrobot_object_initial,options);
 plot(x(:,1),x(:,2),'DisplayName','Generated trajectory','LineWidth',1,'Color',[0 0 0]);
 end 
  

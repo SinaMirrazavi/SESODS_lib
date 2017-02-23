@@ -57,8 +57,8 @@ for i=1:length(demos)
 %                  norm=1;
     end
     demos_V{i}=[tmp_d zeros(d,1) ]/norm;
-    demos_P{i}=tmp/norm;
-    demos_O{i}=[tmp;[tmp_d zeros(d,1) ]]/norm;
+    demos_P{i}=tmp;
+    demos_O{i}=[tmp;[tmp_d/norm zeros(d,1) ]];
 end
 
 xT = mean(xT,2); %we consider the mean value of all demonstraions' final point as the target
@@ -91,7 +91,7 @@ else
 %         norm=1;
     end
     demos_V{i}=[tmp_d]/norm;
-    demos_P{i}=tmp/norm;
-    demos_O{i}=[tmp;[tmp_d]]/norm;
+    demos_P{i}=tmp;
+    demos_O{i}=[tmp;[tmp_d/norm]];
 end
 end
