@@ -1,7 +1,7 @@
 
 # SESODS_lib
 
-Matlab toolbox to learn a GMM based first and second order dynamical system. This package is developed provide several approximations LPV based dynamical systems. All the systems are based on Gaussian Mixture models. Please cite this paper if you use this package:
+Matlab toolbox to learn a GMM based first and second order dynamical system. This package is developed to provide several approximations LPV based dynamical systems. All the systems are based on Gaussian Mixture models. Please cite this paper if you use this package:
 
 
 
