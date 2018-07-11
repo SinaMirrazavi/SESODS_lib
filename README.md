@@ -34,15 +34,15 @@ Matlab toolbox to learn a GMM based first and second order dynamical system. Thi
 This work has been done in collaboration with Alireza Karimi. 
 For more information contact Sina Mirrazavi. 
 ## Copyright
-Please cite these papers if you are using this toolbox:
+Please cite the folloiwng thesis, if you are using this toolbox:
 
-@ARTICLE{7439839,
-author={S. S. M. Salehian and M. Khoramshahi and A. Billard},
-journal={IEEE Transactions on Robotics},
-title={A Dynamical System Approach for Softly Catching a Flying Object: Theory and Experiment},
-year={2016},
-volume={32},
-number={2},
-pages={462-471},
-ISSN={1552-3098},
-month={April},}
+
+@article{MirrazaviSalehian:255170,
+      title = {Compliant control of Uni/ Multi- robotic arms with  dynamical systems },
+      author = {Mirrazavi Salehian, Seyed Sina},
+      institution = {IMT},
+      publisher = {EPFL},
+      pages = {169},
+      year = {2018},
+}
+
