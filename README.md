@@ -34,7 +34,7 @@ Matlab toolbox to learn a GMM based first and second order dynamical system. Thi
 This work has been done in collaboration with Alireza Karimi. 
 For more information contact Sina Mirrazavi. 
 ## Copyright
-Please cite the folloiwng thesis, if you are using this toolbox:
+Please cite the following thesis, if you are using this toolbox:
 
 
 @article{MirrazaviSalehian:255170,
