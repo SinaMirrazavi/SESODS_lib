@@ -6,13 +6,15 @@ addpath([pwd, '/Stable_systems_analysis']);
 cd ..
 addpath(genpath([pwd, '/YALMIP']));
 addpath(genpath([pwd, '/sedumi']));
-cd Convex
-load('Data/matlab.mat','Input_S') % Other options are matlab_3.mat matlab_2.mat
-Training_N=[1,9,12,13,10,7,17,4,2,5,15]; %'matlab.mat'
-Testing_N=[3,6,8,11,14,16,18,19,20];
+% cd Convex
+% load('Data/matlab.mat','Input_S') % Other options are matlab_3.mat matlab_2.mat
+Training_N=[1,2,3,10,7]; %'matlab.mat'
+Testing_N=[4,5,6,8,9];
+for i=1:10
+    Input_S{1,i}=trials{1,i}'; %#ok<SAGROW>
+end
 
-
-dt = 1; %The time step of the demonstrations
+dt =  1/121; %The time step of the demonstrations
 tol_cutting = 0; % A threshold on velocity that will be used for trimming demos
 options.K=3;  %Number of Gaussian funcitons
 
@@ -54,5 +56,21 @@ Stable.prior
 Stable.Mu
 Stable.Sigma
 Stable.A
-%% Simulation
-Simulation(Input_S,Unstable_EM,Stable)
+%% Simulation 
+for i=1:size(Training_N,2)
+   x0_all = Input_S(1:d,Training_N); %finding initial points of all demonstrations
+   plot(Input_S{1,Training_N(1,i)}(:,1),Input_S{1,Training_N(1,i)}(:,2),'DisplayName','Training set','LineWidth',3,'Color',[1 0 0])
+   hold on
+end
+
+xT_all = DatA_T(1:d,train_index(2:length(train_index))-1);
+fn_handle = @(x) GMR(Priors,Mu,Sigma,x,1:d,d+1:2*d);
+
+% fn_handle = @(x) GMR(Priors_0,Mu_0,Sigma_0,x,1:d,d+1:2*d);
+[x xd,~,~,~, sp]=Simulation(x0_all,xT_all,fn_handle,opt_sim); %running the simulator
+figure(sp.fig)
+title('training')
+hold on
+for i=2:length(train_index)
+    plot(train_Data(1,train_index(i-1):train_index(i)-1),train_Data(2,train_index(i-1):train_index(i)-1))
+end

@@ -6,7 +6,7 @@ options=sdpsettings('solver','sedumi','verbose',0);
 H=H_x(prior, Mu, Sigma,Data(1:d,:));
 P0=eye(d,d);
 
-Method=2;
+Method=1;
 if Method==1
     A = sdpvar(d,d,K,'full');
     C=[];
